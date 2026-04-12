@@ -1,15 +1,19 @@
+import java.util.List;
+
 public class Filme {
     private String nome;
     private String dataLancamento;
-    private double orçamento;
+    private double orcamento;
     private String descricao;
+    private Diretor diretor;
+    private List<Ator> listAtores;
 
     public Filme(){}
 
-    public Filme(String dataLancamento, String nome, double orçamento, String descricao) {
+    public Filme(String dataLancamento, String nome, double orcamento, String descricao) {
         this.dataLancamento = dataLancamento;
         this.nome = nome;
-        this.orçamento = orçamento;
+        this.orcamento = orcamento;
         this.descricao = descricao;
     }
 
@@ -29,12 +33,12 @@ public class Filme {
         this.dataLancamento = dataLancamento;
     }
 
-    public double getOrçamento() {
-        return orçamento;
+    public double getOrcamento() {
+        return orcamento;
     }
 
-    public void setOrçamento(double orçamento) {
-        this.orçamento = orçamento;
+    public void setOrcamento(double orcamento) {
+        this.orcamento = orcamento;
     }
 
     public String getDescricao() {
@@ -45,13 +49,31 @@ public class Filme {
         this.descricao = descricao;
     }
 
+    public List<Ator> getListAtores() {
+        return listAtores;
+    }
+
+    public void setListAtores(List<Ator> listAtores) {
+        this.listAtores = listAtores;
+    }
+
+    public Diretor getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(Diretor diretor) {
+        this.diretor = diretor;
+    }
+
     @Override
     public String toString() {
         return "Filme{" +
                 "nome='" + nome + '\'' +
                 ", dataLancamento='" + dataLancamento + '\'' +
-                ", orçamento=" + orçamento +
+                ", orçamento=" + orcamento +
                 ", descricao='" + descricao + '\'' +
+                ", diretor=" + diretor +
+                ", listAtores=" + listAtores +
                 '}';
     }
 }
