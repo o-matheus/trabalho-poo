@@ -13,6 +13,12 @@ public class Ator extends Pessoa{
         return cargo;
     }
 
+
+    public void mostrarInformacoes() {
+        super.mostrarInformacoes();
+        System.out.println("Cargo: " + cargo);
+    }
+
     @Override
     public String toString() {
         System.out.println(super.toString());

@@ -14,6 +14,12 @@ public class Diretor extends Pessoa{
         return cargo;
     }
 
+
+    public void mostrarInformacoes() {
+        super.mostrarInformacoes();
+        System.out.println("Cargo: " + cargo);
+    }
+
     //perguntar a prof pra definir esse metodo.
     @Override
     public String toString() {

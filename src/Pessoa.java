@@ -48,6 +48,13 @@ public abstract class Pessoa {
         this.listaFilmes = listaFilmes;
     }
 
+    public void mostrarInformacoes() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Idade: " + idade);
+        System.out.println("nacionalidade: " + nacionalidade);
+
+    }
+
     @Override
     public String toString() {
         return "Pessoa{" +
