@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Diretor> listaDiretor = new ArrayList<>();
-        ArrayList<Diretor> listaAtpr = new ArrayList<>();
-        ArrayList<Diretor> listaFilme = new ArrayList<>();
+        ArrayList<Ator> listaAtor = new ArrayList<>();
+        ArrayList<Filme> listaFilme = new ArrayList<>();
 
         int opcao = 0;
         Scanner sc = new Scanner(System.in);
@@ -20,21 +20,27 @@ public class Main {
                     break;
                 case 2: //Cadastrar Diretor - Matheus
                     Diretor diretor = cadastrarDiretor(sc);
-                    listaFilme.add(diretor);
-
+                    listaDiretor.add(diretor);
                     break;
                 case 3: //Cadastrar Ator - Nicole
+                    Ator ator = cadastrarAtor(sc);
+                    listaAtor.add(ator);
                     break;
                 case 4: //Associar Filmes com Diretor e ou Atores - David
                     break;
                 case 5: //Pesquisar Filme - Matheus
                     break;
-                case 6: // Sair
+                case 6: // Sair - Nicole
                     System.out.print("\n Finalizando o Sistema...");
                     break;
-                case 7:
-                    for (Diretor d : listaFilme) {
+                case 7: //Mateus
+                    for (Diretor d : listaDiretor) {
                         System.out.println(d.getNome());
+                    }
+                    break;
+                case 8: // Nicole
+                    for (Ator a : listaAtor){
+                        System.out.println(a.getNome());
                     }
                     break;
                 default:
@@ -43,7 +49,7 @@ public class Main {
             }
         } while (opcao != 6);
     }
-
+    //David
     public static void imprimirMenu() {
 
         // Cores ANSI
@@ -92,10 +98,34 @@ public class Main {
         System.out.println("Diretor cadastrado com sucesso!");
         return new Diretor(nome, nacionalidade, idade);
     }
+    public static Ator cadastrarAtor(Scanner sc) { // Nicole
+        System.out.print("Digite o nome do ator: ");
+        String nome = sc.nextLine();
+        System.out.print("Digite a nacionaidade do ator: ");
+        String nacionalidade = sc.nextLine();
+        int idade = 0;
+        do {
+            System.out.print("Digite a idade do ator: ");
+            try {
+                idade = sc.nextInt();
+                sc.nextLine();
+                validarIdade(idade,0);
 
-    public static void validarIdade(int idade, int idadeCorte) {
+            } catch (InputMismatchException e) {
+                System.out.println("Erro: valor da idade deve ser um inteiro");
+                sc.nextLine();
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        } while (idade < 0);
+        System.out.println("Ator cadastrado com sucesso!");
+        return new Ator(nome, nacionalidade, idade);
+    }
+    public static void validarIdade(int idade, int idadeCorte) { //Matheus
         if (idade < idadeCorte) {
             throw new IllegalArgumentException("Idade mínima " + idadeCorte + " ano(s) \n");
+        } else if (idade >= 123) { // Nicole
+            throw new IllegalArgumentException("Idade máxima 123 ano(s) \n");
         }
     }
 
