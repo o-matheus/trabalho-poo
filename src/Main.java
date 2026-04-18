@@ -17,6 +17,8 @@ public class Main {
             sc.nextLine();
             switch (opcao) {
                 case 1: //Cadastrar Filme - Bruna
+                    Filme filme = cadastrarFilme(sc);
+                    listaFilme.add(filme);
                     break;
                 case 2: //Cadastrar Diretor - Matheus
                     Diretor diretor = cadastrarDiretor(sc);
@@ -41,6 +43,11 @@ public class Main {
                 case 8: // Nicole
                     for (Ator a : listaAtor){
                         System.out.println(a.getNome());
+                    }
+                    break;
+                case 9: // Bruna
+                    for (Filme f : listaFilme){
+                        System.out.println(f);
                     }
                     break;
                 default:
@@ -129,4 +136,45 @@ public class Main {
         }
     }
 
+    public static Filme cadastrarFilme(Scanner sc) { // Bruna
+        Filme filme;
+        System.out.print("Digite o título do filme: ");
+        String nome = sc.nextLine();
+        System.out.print("Digite a data de lançamento (mês/ano): ");
+        String dataLancamento = sc.nextLine();
+        double orcamento = 0;
+        do {
+            System.out.print("Digite o orçamento: ");
+            try {
+                orcamento = sc.nextDouble();
+                sc.nextLine();
+                validarOrcamento(orcamento);
+
+            } catch (InputMismatchException e) {
+                System.out.println("Erro: valor do orçamento deve ser um número");
+                sc.nextLine();
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        } while (orcamento <= 0);
+
+        System.out.print("Digite a descrição: ");
+        String descricao = sc.nextLine();
+
+        filme = new Filme(dataLancamento, nome, orcamento, descricao);
+
+        System.out.print("Quer adicionar diretor ou ator?\n 1 - Sim \n 2 - Não\n");
+        int opcao = sc.nextInt();
+        sc.nextLine();
+        if(opcao == 1){
+            //chamar a funcao associar
+        }
+        return filme;
+    }
+
+    public static void validarOrcamento(double orcamento) { //Bruna
+        if (orcamento <0) {
+            throw new IllegalArgumentException("Orçamento não pode ser menor que zero \n");
+        }
+    }
 }
