@@ -65,6 +65,11 @@ public class Filme {
         this.diretor = diretor;
     }
 
+    //David
+    public void cadastrarAtores(Ator ator){
+        listAtores.add(ator);
+    }
+
     @Override
     public String toString() {
         return "Filme{" +

@@ -40,10 +40,7 @@ public class Main {
                     listaAtor.add(ator);
                     break;
                 case 4: //Associar Filmes com Diretor e ou Atores - David
-                    System.out.println("Infome o titulo do filme: ");
-                    String nomeTitulo = sc.nextLine();
-                    //chamar função procurafilme
-                    //pego o retorno do procura fime e chama a função associarFuncionario
+                    associarFuniconarios(listaFilme, listaAtor, listaDiretor, sc);
                     break;
                 case 5: //Pesquisar Filme - Matheus
                     int index = buscarFilme(listaFilme, sc);
@@ -211,9 +208,61 @@ public class Main {
         }
     }
 
-    public static void associarFuniconarios(int index){
-        //ja pequisou o filme
+    //David
+    public static void associarFuniconarios(ArrayList<Filme> filmes,  ArrayList<Ator> atores, ArrayList<Diretor> diretores, Scanner sc){
+        int index = buscarFilme(filmes, sc);
         if(index >=0){
+            System.out.println("Filme encontrado");
+            Filme filme = filmes.get(index);
+            System.out.println("Deseja associar um diretor?\n 1 - Sim\n 2 - Não");
+            int opcao = sc.nextInt();
+            sc.nextLine();
+            if(opcao == 1){
+                int indexDiretor = buscarDiretor(diretores, sc);
+                if(indexDiretor != -1){
+                    Diretor diretor = diretores.get(indexDiretor);
+                    System.out.println("Diretor encontrado");
+                    filme.setDiretor(diretor);
+                    System.out.println("Diretor adicionado!");
+                }else{
+                    System.out.println("Diretor não encontrado. Deseja cadastrar um novo diretor?\n 1 - Sim\n 2 - Não");
+                    opcao = sc.nextInt();
+                    if(opcao == 1){
+                        cadastrarDiretor(sc);
+                        Diretor diretor2 = diretores.getLast();
+                        filme.setDiretor(diretor2);
+                        System.out.println("Diretor adicionado!");
+                    }
+
+                }
+            }
+            System.out.println("Deseja associar um Ator?\n 1 - Sim\n 2 - Não");
+            opcao = sc.nextInt();
+            do{
+
+                if(opcao == 1){
+                    int indexAtor = buscarAtor(atores, sc);
+                    if(indexAtor != -1){
+                        Ator ator = atores.get(indexAtor);
+                        System.out.println("Ator encontrado");
+                        filme.cadastrarAtores(ator);
+                        System.out.println("Ator adicionado!");
+                    }else{
+                        System.out.println("Ator não encontrado. Deseja cadastrar um novo Ator?\n 1 - Sim\n 2 - Não");
+                        opcao = sc.nextInt();
+                        if(opcao == 1){
+                            cadastrarAtor(sc);
+                            Ator ator2 = atores.getLast();
+                            filme.cadastrarAtores(ator2);
+                            System.out.println("Ator adicionado!");
+                        }
+
+                    }
+                }
+                System.out.println("Deseja associar um novo Ator?\n 1 - Sim\n 2 - Não");
+                opcao = sc.nextInt();
+            }while(opcao!=2);
+
 
 
         }else{
