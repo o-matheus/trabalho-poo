@@ -7,6 +7,12 @@ public class Main {
         ArrayList<Diretor> listaDiretor = new ArrayList<>();
         ArrayList<Ator> listaAtor = new ArrayList<>();
         ArrayList<Filme> listaFilme = new ArrayList<>();
+        Filme carros = new Filme("04/26", "carros", 12.50, "testes de bruno");
+        Diretor matheus = new Diretor("Matheus", "Brasileiro", 18);
+        Ator nicole = new Ator("Nicole ferraz", "portuguesa", 20);
+        listaFilme.add(carros);
+        listaDiretor.add(matheus);
+        listaAtor.add(nicole);
 
         int opcao = 0;
         Scanner sc = new Scanner(System.in);
@@ -29,6 +35,10 @@ public class Main {
                     listaAtor.add(ator);
                     break;
                 case 4: //Associar Filmes com Diretor e ou Atores - David
+                    System.out.println("Infome o titulo do filme: ");
+                    String nomeTitulo = sc.nextLine();
+                    //chamar função procurafilme
+                    //pego o retorno do procura fime e chama a função associarFuncionario
                     break;
                 case 5: //Pesquisar Filme - Matheus
                     break;
@@ -177,4 +187,18 @@ public class Main {
             throw new IllegalArgumentException("Orçamento não pode ser menor que zero \n");
         }
     }
+
+    public static void associarFuniconarios(int index){
+        //ja pequisou o filme
+        if(index >=0){
+
+
+        }else{
+            System.out.println("filme não encontrado!");
+        }
+
+
+    }
+
+
 }
