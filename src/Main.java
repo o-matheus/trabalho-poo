@@ -7,10 +7,15 @@ public class Main {
         ArrayList<Diretor> listaDiretor = new ArrayList<>();
         ArrayList<Ator> listaAtor = new ArrayList<>();
         ArrayList<Filme> listaFilme = new ArrayList<>();
+
         Filme carros = new Filme("04/26", "carros", 12.50, "testes de bruno");
+        Filme carros2 = new Filme("04/26", "motos", 12.50, "testes de bruno");
+        Filme carros3 = new Filme("04/26", "barcos", 12.50, "testes de bruno");
         Diretor matheus = new Diretor("Matheus", "Brasileiro", 18);
         Ator nicole = new Ator("Nicole ferraz", "portuguesa", 20);
         listaFilme.add(carros);
+        listaFilme.add(carros2);
+        listaFilme.add(carros3);
         listaDiretor.add(matheus);
         listaAtor.add(nicole);
 
@@ -41,6 +46,10 @@ public class Main {
                     //pego o retorno do procura fime e chama a função associarFuncionario
                     break;
                 case 5: //Pesquisar Filme - Matheus
+                    int index = buscarFilme(listaFilme, sc);
+                    if (index >= 0) System.out.println(listaFilme.get(index));
+                    else System.out.println("Filme não encontrado");
+
                     break;
                 case 6: // Sair - Nicole
                     System.out.print("\n Finalizando o Sistema...");
@@ -60,11 +69,23 @@ public class Main {
                         System.out.println(f);
                     }
                     break;
+                case 10: //Buscar ator
+                    int index1 = buscarAtor(listaAtor, sc);
+                    if (index1 >= 0) System.out.println(listaFilme.get(index1));
+                    else System.out.println("Ator não encontrado");
+                    break;
+                case 11: //Buscar diretor
+                    int index2 = buscarDiretor(listaDiretor, sc);
+                    if (index2 >= 0) System.out.println(listaFilme.get(index2));
+                    else System.out.println("Diretor não encontrado");
+                    break;
                 default:
                     System.out.print("\nA Opção Selecionada é Inválida tente outra!");
                     break;
             }
         } while (opcao != 6);
+
+
     }
     //David
     public static void imprimirMenu() {
@@ -84,6 +105,8 @@ public class Main {
         System.out.println(AMARELO + "|" + AZUL + " 3 ➤ Cadastrar Ator                      " + AMARELO + "|" + RESET);
         System.out.println(AMARELO + "|" + AZUL + " 4 ➤ Associar Filmes                     " + AMARELO + "|" + RESET);
         System.out.println(AMARELO + "|" + AZUL + " 5 ➤ Pesquisar Filme                     " + AMARELO + "|" + RESET);
+        System.out.println(AMARELO + "|" + AZUL + " 10 ➤ Pesquisar Ator                     " + AMARELO + "|" + RESET);
+        System.out.println(AMARELO + "|" + AZUL + " 11 ➤ Pesquisar Diretor                     " + AMARELO + "|" + RESET);
         System.out.println(AMARELO + "|" + AZUL + " 6 ➤ Sair                                " + AMARELO + "|" + RESET);
 
         System.out.println(AMARELO + "+------------------------------------------+" + RESET);
@@ -197,8 +220,45 @@ public class Main {
             System.out.println("filme não encontrado!");
         }
 
+    }
 
+    public static int buscarFilme(ArrayList<Filme> filmes, Scanner sc ) {
+        System.out.println("Digite o nome do filme");
+        String filmePesquisado = sc.nextLine();
+        int i = 0;
+        for(Filme f : filmes) {
+            if(f.getNome().equalsIgnoreCase(filmePesquisado)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
+    public static int buscarAtor(ArrayList<Ator> atores, Scanner sc ) {
+        System.out.println("Digite o nome do ator");
+        String termoPesquisado = sc.nextLine();
+        int i = 0;
+        for(Ator a : atores) {
+            if(a.getNome().equalsIgnoreCase(termoPesquisado)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
 
 
+    public static int buscarDiretor(ArrayList<Diretor> diretores, Scanner sc ) {
+        System.out.println("Digite o nome do ator");
+        String termoPesquisado = sc.nextLine();
+        int i = 0;
+        for(Diretor d : diretores) {
+            if(d.getNome().equalsIgnoreCase(termoPesquisado)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
 }
