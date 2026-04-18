@@ -10,15 +10,15 @@ public class Main {
                     imprimirMenu();
                     opcao= sc.nextInt();
             switch (opcao) {
-                case 1: //Cadastrar Filme
+                case 1: //Cadastrar Filme - Bruna
                     break;
-                case 2: //Cadastrar Diretor
+                case 2: //Cadastrar Diretor - Matheus
                     break;
-                case 3: //Cadastrar Ator
+                case 3: //Cadastrar Ator - Nicole
                     break;
-                case 4: //Associar Filmes com Diretore ou Atores
+                case 4: //Associar Filmes com Diretore ou Atores - David
                     break;
-                case 5: //Pesquisar Filme
+                case 5: //Pesquisar Filme - Matheus
                     break;
                 case 6: // Sair
                     System.out.print("\n Finalizando o Sistema...");
@@ -41,7 +41,7 @@ public class Main {
         System.out.println(AMARELO + "+------------------------------------------+" + RESET);
         System.out.println(AMARELO + "| >>>>>>>>>>>>>>>>> MENU <<<<<<<<<<<<<<<<< |" + RESET);
         System.out.println(AMARELO + "+------------------------------------------+" + RESET);
-
+        // Comentário com o nome da pessoa que fez ;)
         System.out.println(AMARELO + "|" + AZUL + " 1 ➤ Cadastrar Filme                     " + AMARELO + "|" + RESET);
         System.out.println(AMARELO + "|" + AZUL + " 2 ➤ Cadastrar Diretor                   " + AMARELO + "|" + RESET);
         System.out.println(AMARELO + "|" + AZUL + " 3 ➤ Cadastrar Ator                      " + AMARELO + "|" + RESET);
