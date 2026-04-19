@@ -217,6 +217,7 @@ public class Main {
             System.out.println("Deseja associar um diretor?\n 1 - Sim\n 2 - Não");
             int opcao = sc.nextInt();
             sc.nextLine();
+
             if(opcao == 1){
                 int indexDiretor = buscarDiretor(diretores, sc);
                 if(indexDiretor != -1){
@@ -227,6 +228,7 @@ public class Main {
                 }else{
                     System.out.println("Diretor não encontrado. Deseja cadastrar um novo diretor?\n 1 - Sim\n 2 - Não");
                     opcao = sc.nextInt();
+                    sc.nextLine();
                     if(opcao == 1){
                         cadastrarDiretor(sc);
                         Diretor diretor2 = diretores.getLast();
@@ -238,8 +240,8 @@ public class Main {
             }
             System.out.println("Deseja associar um Ator?\n 1 - Sim\n 2 - Não");
             opcao = sc.nextInt();
+            sc.nextLine();
             do{
-
                 if(opcao == 1){
                     int indexAtor = buscarAtor(atores, sc);
                     if(indexAtor != -1){
@@ -250,6 +252,7 @@ public class Main {
                     }else{
                         System.out.println("Ator não encontrado. Deseja cadastrar um novo Ator?\n 1 - Sim\n 2 - Não");
                         opcao = sc.nextInt();
+                        sc.nextLine();
                         if(opcao == 1){
                             cadastrarAtor(sc);
                             Ator ator2 = atores.getLast();
@@ -261,6 +264,7 @@ public class Main {
                 }
                 System.out.println("Deseja associar um novo Ator?\n 1 - Sim\n 2 - Não");
                 opcao = sc.nextInt();
+                sc.nextLine();
             }while(opcao!=2);
 
 
@@ -299,7 +303,7 @@ public class Main {
 
 
     public static int buscarDiretor(ArrayList<Diretor> diretores, Scanner sc ) {
-        System.out.println("Digite o nome do ator");
+        System.out.println("Digite o nome do diretor");
         String termoPesquisado = sc.nextLine();
         int i = 0;
         for(Diretor d : diretores) {

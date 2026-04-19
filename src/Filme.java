@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Filme {
@@ -6,7 +7,7 @@ public class Filme {
     private double orcamento;
     private String descricao;
     private Diretor diretor;
-    private List<Ator> listAtores;
+    private List<Ator> listAtores = new ArrayList<>();
 
     public Filme(){}
 
