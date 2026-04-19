@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Diretor> listaDiretor = new ArrayList<>();
-        ArrayList<Ator> listaAtor = new ArrayList<>();
-        ArrayList<Filme> listaFilme = new ArrayList<>();
+        List<Diretor> listaDiretor = new ArrayList<>();
+        List<Ator> listaAtor = new ArrayList<>();
+        List<Filme> listaFilme = new ArrayList<>();
 
         Filme carros = new Filme("04/26", "carros", 12.50, "testes de bruno");
         Filme carros2 = new Filme("04/26", "motos", 12.50, "testes de bruno");
@@ -19,7 +20,7 @@ public class Main {
         listaDiretor.add(matheus);
         listaAtor.add(nicole);
 
-        int opcao = 0;
+        int opcao;
         Scanner sc = new Scanner(System.in);
         do {
             //chamando o menu pra tela
@@ -44,8 +45,11 @@ public class Main {
                     break;
                 case 5: //Pesquisar Filme - Matheus
                     int index = buscarFilme(listaFilme, sc);
-                    if (index >= 0) System.out.println(listaFilme.get(index));
-                    else System.out.println("Filme não encontrado");
+                    if (index >= 0) {
+                        System.out.println(listaFilme.get(index));
+                    } else {
+                        System.out.println("Filme não encontrado");
+                    }
 
                     break;
                 case 6: // Sair - Nicole
@@ -57,24 +61,30 @@ public class Main {
                     }
                     break;
                 case 8: // Nicole
-                    for (Ator a : listaAtor){
+                    for (Ator a : listaAtor) {
                         System.out.println(a.getNome());
                     }
                     break;
                 case 9: // Bruna
-                    for (Filme f : listaFilme){
+                    for (Filme f : listaFilme) {
                         System.out.println(f);
                     }
                     break;
                 case 10: //Buscar ator
                     int index1 = buscarAtor(listaAtor, sc);
-                    if (index1 >= 0) System.out.println(listaFilme.get(index1));
-                    else System.out.println("Ator não encontrado");
+                    if (index1 >= 0) {
+                        System.out.println(listaFilme.get(index1));
+                    } else {
+                        System.out.println("Ator não encontrado");
+                    }
                     break;
                 case 11: //Buscar diretor
                     int index2 = buscarDiretor(listaDiretor, sc);
-                    if (index2 >= 0) System.out.println(listaFilme.get(index2));
-                    else System.out.println("Diretor não encontrado");
+                    if (index2 >= 0) {
+                        System.out.println(listaFilme.get(index2));
+                    } else {
+                        System.out.println("Diretor não encontrado");
+                    }
                     break;
                 default:
                     System.out.print("\nA Opção Selecionada é Inválida tente outra!");
@@ -84,6 +94,7 @@ public class Main {
 
 
     }
+
     //David
     public static void imprimirMenu() {
 
@@ -135,6 +146,7 @@ public class Main {
         System.out.println("Diretor cadastrado com sucesso!");
         return new Diretor(nome, nacionalidade, idade);
     }
+
     public static Ator cadastrarAtor(Scanner sc) { // Nicole
         System.out.print("Digite o nome do ator: ");
         String nome = sc.nextLine();
@@ -146,7 +158,7 @@ public class Main {
             try {
                 idade = sc.nextInt();
                 sc.nextLine();
-                validarIdade(idade,0);
+                validarIdade(idade, 0);
 
             } catch (InputMismatchException e) {
                 System.out.println("Erro: valor da idade deve ser um inteiro");
@@ -158,6 +170,7 @@ public class Main {
         System.out.println("Ator cadastrado com sucesso!");
         return new Ator(nome, nacionalidade, idade);
     }
+
     public static void validarIdade(int idade, int idadeCorte) { //Matheus
         if (idade < idadeCorte) {
             throw new IllegalArgumentException("Idade mínima " + idadeCorte + " ano(s) \n");
@@ -196,40 +209,40 @@ public class Main {
         System.out.print("Quer adicionar diretor ou ator?\n 1 - Sim \n 2 - Não\n");
         int opcao = sc.nextInt();
         sc.nextLine();
-        if(opcao == 1){
+        if (opcao == 1) {
             //chamar a funcao associar
         }
         return filme;
     }
 
     public static void validarOrcamento(double orcamento) { //Bruna
-        if (orcamento <0) {
+        if (orcamento < 0) {
             throw new IllegalArgumentException("Orçamento não pode ser menor que zero \n");
         }
     }
 
     //David
-    public static void associarFuniconarios(ArrayList<Filme> filmes,  ArrayList<Ator> atores, ArrayList<Diretor> diretores, Scanner sc){
+    public static void associarFuniconarios(List<Filme> filmes, List<Ator> atores, List<Diretor> diretores, Scanner sc) {
         int index = buscarFilme(filmes, sc);
-        if(index >=0){
+        if (index >= 0) {
             System.out.println("Filme encontrado");
             Filme filme = filmes.get(index);
             System.out.println("Deseja associar um diretor?\n 1 - Sim\n 2 - Não");
             int opcao = sc.nextInt();
             sc.nextLine();
 
-            if(opcao == 1){
+            if (opcao == 1) {
                 int indexDiretor = buscarDiretor(diretores, sc);
-                if(indexDiretor != -1){
+                if (indexDiretor != -1) {
                     Diretor diretor = diretores.get(indexDiretor);
                     System.out.println("Diretor encontrado");
                     filme.setDiretor(diretor);
                     System.out.println("Diretor adicionado!");
-                }else{
+                } else {
                     System.out.println("Diretor não encontrado. Deseja cadastrar um novo diretor?\n 1 - Sim\n 2 - Não");
                     opcao = sc.nextInt();
                     sc.nextLine();
-                    if(opcao == 1){
+                    if (opcao == 1) {
                         cadastrarDiretor(sc);
                         Diretor diretor2 = diretores.getLast();
                         filme.setDiretor(diretor2);
@@ -241,19 +254,19 @@ public class Main {
             System.out.println("Deseja associar um Ator?\n 1 - Sim\n 2 - Não");
             opcao = sc.nextInt();
             sc.nextLine();
-            do{
-                if(opcao == 1){
+            do {
+                if (opcao == 1) {
                     int indexAtor = buscarAtor(atores, sc);
-                    if(indexAtor != -1){
+                    if (indexAtor != -1) {
                         Ator ator = atores.get(indexAtor);
                         System.out.println("Ator encontrado");
                         filme.cadastrarAtores(ator);
                         System.out.println("Ator adicionado!");
-                    }else{
+                    } else {
                         System.out.println("Ator não encontrado. Deseja cadastrar um novo Ator?\n 1 - Sim\n 2 - Não");
                         opcao = sc.nextInt();
                         sc.nextLine();
-                        if(opcao == 1){
+                        if (opcao == 1) {
                             cadastrarAtor(sc);
                             Ator ator2 = atores.getLast();
                             filme.cadastrarAtores(ator2);
@@ -265,22 +278,21 @@ public class Main {
                 System.out.println("Deseja associar um novo Ator?\n 1 - Sim\n 2 - Não");
                 opcao = sc.nextInt();
                 sc.nextLine();
-            }while(opcao!=2);
+            } while (opcao != 2);
 
 
-
-        }else{
+        } else {
             System.out.println("filme não encontrado!");
         }
 
     }
 
-    public static int buscarFilme(ArrayList<Filme> filmes, Scanner sc ) {
+    public static int buscarFilme(List<Filme> filmes, Scanner sc) {
         System.out.println("Digite o nome do filme");
         String filmePesquisado = sc.nextLine();
         int i = 0;
-        for(Filme f : filmes) {
-            if(f.getNome().equalsIgnoreCase(filmePesquisado)) {
+        for (Filme f : filmes) {
+            if (f.getNome().equalsIgnoreCase(filmePesquisado)) {
                 return i;
             }
             i++;
@@ -288,12 +300,12 @@ public class Main {
         return -1;
     }
 
-    public static int buscarAtor(ArrayList<Ator> atores, Scanner sc ) {
+    public static int buscarAtor(List<Ator> atores, Scanner sc) {
         System.out.println("Digite o nome do ator");
         String termoPesquisado = sc.nextLine();
         int i = 0;
-        for(Ator a : atores) {
-            if(a.getNome().equalsIgnoreCase(termoPesquisado)) {
+        for (Ator a : atores) {
+            if (a.getNome().equalsIgnoreCase(termoPesquisado)) {
                 return i;
             }
             i++;
@@ -302,12 +314,12 @@ public class Main {
     }
 
 
-    public static int buscarDiretor(ArrayList<Diretor> diretores, Scanner sc ) {
+    public static int buscarDiretor(List<Diretor> diretores, Scanner sc) {
         System.out.println("Digite o nome do diretor");
         String termoPesquisado = sc.nextLine();
         int i = 0;
-        for(Diretor d : diretores) {
-            if(d.getNome().equalsIgnoreCase(termoPesquisado)) {
+        for (Diretor d : diretores) {
+            if (d.getNome().equalsIgnoreCase(termoPesquisado)) {
                 return i;
             }
             i++;
