@@ -8,25 +8,27 @@ public class Main {
         List<Ator> listaAtor = DadosMock.carregarAtores();
         List<Filme> listaFilme = DadosMock.carregarFilmes();
 
-        int opcao;
+        int opcao=0;
         Scanner sc = new Scanner(System.in);
         do {
-            //chamando o menu pra tela
-            imprimirMenu();
-            opcao = sc.nextInt();
-            sc.nextLine();
+            try {//Nicole
+                imprimirMenu();
+                opcao = sc.nextInt();
+                sc.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Erro: Digite um número!");
+                sc.nextLine(); // limpa o buffer
+                continue; // volta pro início do loop
+            }
             switch (opcao) {
                 case 1: //Cadastrar Filme - Bruna
-                    Filme filme = cadastrarFilme(sc);
-                    listaFilme.add(filme);
+                    Filme filme = cadastrarFilme(sc,listaFilme,listaAtor, listaDiretor);
                     break;
                 case 2: //Cadastrar Diretor - Matheus
-                    Diretor diretor = cadastrarDiretor(sc);
-                    listaDiretor.add(diretor);
+                    cadastrarDiretor(sc, listaDiretor);
                     break;
                 case 3: //Cadastrar Ator - Nicole
-                    Ator ator = cadastrarAtor(sc);
-                    listaAtor.add(ator);
+                    cadastrarAtor(sc, listaAtor);
                     break;
                 case 4: //Associar Filmes com Diretor e ou Atores - David
                     associarFuniconarios(listaFilme, listaAtor, listaDiretor, sc);
@@ -79,8 +81,6 @@ public class Main {
                     break;
             }
         } while (opcao != 6);
-
-
     }
 
     //David
@@ -111,7 +111,7 @@ public class Main {
     }
 
     // Matheus
-    public static Diretor cadastrarDiretor(Scanner sc) {
+    public static void cadastrarDiretor(Scanner sc, List<Diretor> diretores) {
         System.out.print("Digite o nome do diretor: ");
         String nome = sc.nextLine();
         System.out.print("Digite a nacionaidade do diretor: ");
@@ -132,10 +132,10 @@ public class Main {
             }
         } while (idade < 12);
         System.out.println("Diretor cadastrado com sucesso!");
-        return new Diretor(nome, nacionalidade, idade);
+        diretores.add(new Diretor(nome, nacionalidade, idade));
     }
 
-    public static Ator cadastrarAtor(Scanner sc) { // Nicole
+    public static void cadastrarAtor(Scanner sc, List<Ator> atores) { // Nicole
         System.out.print("Digite o nome do ator: ");
         String nome = sc.nextLine();
         System.out.print("Digite a nacionaidade do ator: ");
@@ -156,7 +156,7 @@ public class Main {
             }
         } while (idade < 0);
         System.out.println("Ator cadastrado com sucesso!");
-        return new Ator(nome, nacionalidade, idade);
+        atores.add(new Ator(nome, nacionalidade, idade));
     }
 
     public static void validarIdade(int idade, int idadeCorte) { //Matheus
@@ -167,7 +167,7 @@ public class Main {
         }
     }
 
-    public static Filme cadastrarFilme(Scanner sc) { // Bruna
+    public static Filme cadastrarFilme(Scanner sc, List<Filme> filmes, List<Ator> atores, List<Diretor> diretores) { // Bruna
         Filme filme;
         System.out.print("Digite o título do filme: ");
         String nome = sc.nextLine();
@@ -193,12 +193,13 @@ public class Main {
         String descricao = sc.nextLine();
 
         filme = new Filme(dataLancamento, nome, orcamento, descricao);
+        filmes.add(filme);
 
         System.out.print("Quer adicionar diretor ou ator?\n 1 - Sim \n 2 - Não\n");
         int opcao = sc.nextInt();
         sc.nextLine();
         if (opcao == 1) {
-            //chamar a funcao associar
+            associarFuniconarios(filmes, atores, diretores, sc);
         }
         return filme;
     }
@@ -231,7 +232,7 @@ public class Main {
                     opcao = sc.nextInt();
                     sc.nextLine();
                     if (opcao == 1) {
-                        cadastrarDiretor(sc);
+                        cadastrarDiretor(sc, diretores);
                         Diretor diretor2 = diretores.getLast();
                         filme.setDiretor(diretor2);
                         System.out.println("Diretor adicionado!");
@@ -255,7 +256,7 @@ public class Main {
                         opcao = sc.nextInt();
                         sc.nextLine();
                         if (opcao == 1) {
-                            cadastrarAtor(sc);
+                            cadastrarAtor(sc,atores);
                             Ator ator2 = atores.getLast();
                             filme.cadastrarAtores(ator2);
                             System.out.println("Ator adicionado!");
