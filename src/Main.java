@@ -1,24 +1,12 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        List<Diretor> listaDiretor = new ArrayList<>();
-        List<Ator> listaAtor = new ArrayList<>();
-        List<Filme> listaFilme = new ArrayList<>();
-
-        Filme carros = new Filme("04/26", "carros", 12.50, "testes de bruno");
-        Filme carros2 = new Filme("04/26", "motos", 12.50, "testes de bruno");
-        Filme carros3 = new Filme("04/26", "barcos", 12.50, "testes de bruno");
-        Diretor matheus = new Diretor("Matheus", "Brasileiro", 18);
-        Ator nicole = new Ator("Nicole ferraz", "portuguesa", 20);
-        listaFilme.add(carros);
-        listaFilme.add(carros2);
-        listaFilme.add(carros3);
-        listaDiretor.add(matheus);
-        listaAtor.add(nicole);
+        List<Diretor> listaDiretor = DadosMock.carregarDiretores();
+        List<Ator> listaAtor = DadosMock.carregarAtores();
+        List<Filme> listaFilme = DadosMock.carregarFilmes();
 
         int opcao;
         Scanner sc = new Scanner(System.in);
@@ -73,7 +61,7 @@ public class Main {
                 case 10: //Buscar ator
                     int index1 = buscarAtor(listaAtor, sc);
                     if (index1 >= 0) {
-                        System.out.println(listaFilme.get(index1));
+                        System.out.println(listaAtor.get(index1));
                     } else {
                         System.out.println("Ator não encontrado");
                     }
@@ -81,7 +69,7 @@ public class Main {
                 case 11: //Buscar diretor
                     int index2 = buscarDiretor(listaDiretor, sc);
                     if (index2 >= 0) {
-                        System.out.println(listaFilme.get(index2));
+                        System.out.println(listaDiretor.get(index2));
                     } else {
                         System.out.println("Diretor não encontrado");
                     }
