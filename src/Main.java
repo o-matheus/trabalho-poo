@@ -293,7 +293,7 @@ public class Main {
 
 
     public static int buscarDiretor(List<Diretor> diretores, Scanner sc) {
-        System.out.println(AZUL + "\nDigite o nome do diretor: " + RESET);
+        System.out.print(AZUL + "\nDigite o nome do diretor: " + RESET);
         String termoPesquisado = sc.nextLine();
         int i = 0;
         for (Diretor d : diretores) {
