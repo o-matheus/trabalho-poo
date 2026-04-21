@@ -78,7 +78,9 @@ public class Filme {
                 .collect(java.util.stream.Collectors.joining(", "));
 
         return String.format(
-                "Título: %s\n, Data de lançamento: %s\n, Orçamento: R$ %.2f\n, Descricao: %s\n, Diretor: %s\n, Atores: %s",
+                Main.AZUL + "\nTítulo: " + Main.AMARELO + "%s\n" + Main.AZUL + "Data de lançamento: " + Main.AMARELO +
+                "%s\n" + Main.AZUL + "Orçamento: " + Main.AMARELO + "R$ %.2f\n" + Main.AZUL + "Descricao: " + Main.AMARELO +
+                "%s\n" + Main.AZUL + "Diretor: " + Main.AMARELO + "%s\n" + Main.AZUL + "Atores: " + Main.AMARELO + "%s",
                 nome, dataLancamento, orcamento, descricao, diretor.getNome(), atoresNomes
         );
     }
