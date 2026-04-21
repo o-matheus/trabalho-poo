@@ -73,13 +73,13 @@ public class Filme {
 
     @Override
     public String toString() {
-        return "Filme{" +
-                "nome='" + nome + '\'' +
-                ", dataLancamento='" + dataLancamento + '\'' +
-                ", orçamento=" + orcamento +
-                ", descricao='" + descricao + '\'' +
-                ", diretor=" + diretor +
-                ", listAtores=" + listAtores +
-                '}';
+        String atoresNomes = listAtores.stream()
+                .map(Ator::getNome)
+                .collect(java.util.stream.Collectors.joining(", "));
+
+        return String.format(
+                "Título: %s\n, Data de lançamento: %s\n, Orçamento: R$ %.2f\n, Descricao: %s\n, Diretor: %s\n, Atores: %s",
+                nome, dataLancamento, orcamento, descricao, diretor.getNome(), atoresNomes
+        );
     }
 }

@@ -15,17 +15,10 @@ public class Diretor extends Pessoa{
     }
 
 
-    public void mostrarInformacoes() {
-        super.mostrarInformacoes();
-        System.out.println("Cargo: " + cargo);
-    }
 
     //perguntar a prof pra definir esse metodo.
     @Override
     public String toString() {
-        System.out.println(super.toString());
-        return "Diretor{" +
-                "cargo='" + cargo + '\'' +
-                '}';
+        return String.format("Nome: %s, Cargo: %s, Idade: %d, Nacionalidade: %s", getNome(), cargo, getIdade(), getNacionalidade());
     }
 }
