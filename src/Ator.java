@@ -17,6 +17,9 @@ public class Ator extends Pessoa{
 
     @Override
     public String toString() {
-        return String.format("Nome: %s, Cargo: %s, Idade: %d, Nacionalidade: %s", getNome(), cargo, getIdade(), getNacionalidade());
+        return String.format(
+                Main.AZUL + "\nNome: " + Main.AMARELO + "%s\n" + Main.AZUL + "Cargo: " + Main.AMARELO +
+                "%s\n" + Main.AZUL + "Idade: " + Main.AMARELO + "%d\n" + Main.AZUL + "Nacionalidade: "
+                + Main.AMARELO + "%s", getNome(), cargo, getIdade(), getNacionalidade());
     }
 }

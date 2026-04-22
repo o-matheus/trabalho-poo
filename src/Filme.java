@@ -6,7 +6,7 @@ public class Filme {
     private String dataLancamento;
     private double orcamento;
     private String descricao;
-    private Diretor diretor;
+    private Diretor diretor = new Diretor();
     private List<Ator> listAtores = new ArrayList<>();
 
     public Filme(){}
@@ -16,6 +16,15 @@ public class Filme {
         this.nome = nome;
         this.orcamento = orcamento;
         this.descricao = descricao;
+    }
+
+    public Filme(String dataLancamento, String nome, double orcamento, String descricao, Diretor diretor, List<Ator> listAtores) {
+        this.nome = nome;
+        this.dataLancamento = dataLancamento;
+        this.orcamento = orcamento;
+        this.descricao = descricao;
+        this.diretor = diretor;
+        this.listAtores = listAtores;
     }
 
     public String getNome() {
@@ -73,12 +82,23 @@ public class Filme {
 
     @Override
     public String toString() {
+
+        if(listAtores.isEmpty()) {
+            return String.format(
+                    Main.AZUL + "\nTítulo: " + Main.AMARELO + "%s\n" + Main.AZUL + "Data de lançamento: " + Main.AMARELO +
+                            "%s\n" + Main.AZUL + "Orçamento: " + Main.AMARELO + "R$ %.2f\n" + Main.AZUL + "Descrição: " + Main.AMARELO +
+                            "%s\n" + Main.AZUL + "Diretor: " + Main.AMARELO + "%s\n" + Main.AZUL + "Atores: " + Main.AMARELO + "Não cadastrados",
+                    nome, dataLancamento, orcamento, descricao, diretor.getNome());
+        }
+
         String atoresNomes = listAtores.stream()
                 .map(Ator::getNome)
                 .collect(java.util.stream.Collectors.joining(", "));
 
         return String.format(
-                "Título: %s\n, Data de lançamento: %s\n, Orçamento: R$ %.2f\n, Descricao: %s\n, Diretor: %s\n, Atores: %s",
+                Main.AZUL + "\nTítulo: " + Main.AMARELO + "%s\n" + Main.AZUL + "Data de lançamento: " + Main.AMARELO +
+                "%s\n" + Main.AZUL + "Orçamento: " + Main.AMARELO + "R$ %.2f\n" + Main.AZUL + "Descrição: " + Main.AMARELO +
+                "%s\n" + Main.AZUL + "Diretor: " + Main.AMARELO + "%s\n" + Main.AZUL + "Atores: " + Main.AMARELO + "%s",
                 nome, dataLancamento, orcamento, descricao, diretor.getNome(), atoresNomes
         );
     }

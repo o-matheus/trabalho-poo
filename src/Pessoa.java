@@ -1,7 +1,7 @@
 import java.util.List;
 
 public abstract class Pessoa {
-    private String nome;
+    private String nome = "Não cadastrado";
     private String nacionalidade;
     private List<Filme> listaFilmes;
     private int idade;
