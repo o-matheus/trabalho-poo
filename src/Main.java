@@ -17,7 +17,7 @@ public class Main {
         List<Ator> listaAtor = DadosMock.carregarAtores();
         List<Filme> listaFilme = DadosMock.carregarFilmes();
 
-        int opcao=0;
+        int opcao = 0;
         Scanner sc = new Scanner(System.in);
         do {
             try {//Nicole
@@ -31,7 +31,7 @@ public class Main {
             }
             switch (opcao) {
                 case 1: //Cadastrar Filme - Bruna
-                    Filme filme = cadastrarFilme(sc,listaFilme,listaAtor, listaDiretor);
+                    Filme filme = cadastrarFilme(sc, listaFilme, listaAtor, listaDiretor);
                     break;
                 case 2: //Cadastrar Diretor - Matheus
                     cadastrarDiretor(sc, listaDiretor);
@@ -205,9 +205,18 @@ public class Main {
         if (index >= 0) {
             System.out.println(VERDE + "\nFilme encontrado!" + RESET);
             Filme filme = filmes.get(index);
-            System.out.println(AZUL + "\nDeseja associar um diretor?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não\n" + RESET);
-            int opcao = sc.nextInt();
-            sc.nextLine();
+            int opcao = 0;
+            do {
+                try {
+                    System.out.println(AZUL + "\nDeseja associar um diretor?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não\n" + RESET);
+                    opcao = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println(VERMELHO + "Erro: Digite um número!" + RESET);
+                    sc.nextLine();
+                }
+            } while ((opcao != 1 && opcao != 2));
+
 
             if (opcao == 1) {
                 int indexDiretor = buscarDiretor(diretores, sc);
@@ -229,10 +238,16 @@ public class Main {
 
                 }
             }
-            System.out.println(AZUL + "\nDeseja associar um Ator?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não" + RESET);
-            opcao = sc.nextInt();
-            sc.nextLine();
             do {
+                try {
+                    System.out.println(AZUL + "\nDeseja associar um Ator?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não" + RESET);
+                    opcao = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println(VERMELHO + "Erro: Digite um número!" + RESET);
+                    sc.nextLine();
+                    continue;
+                }
                 if (opcao == 1) {
                     int indexAtor = buscarAtor(atores, sc);
                     if (indexAtor != -1) {
@@ -241,11 +256,18 @@ public class Main {
                         filme.cadastrarAtores(ator);
                         System.out.println(VERDE + "Ator adicionado!" + RESET);
                     } else {
-                        System.out.println(AZUL + "\nAtor não encontrado. Deseja cadastrar um novo Ator?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não" + RESET);
-                        opcao = sc.nextInt();
-                        sc.nextLine();
+                        try {
+                            System.out.println(VERDE + "\nAtor não encontrado!" + RESET);
+                            System.out.println(AZUL + "\nDeseja cadastrar o Ator?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não" + RESET);
+                            opcao = sc.nextInt();
+                            sc.nextLine();
+                        } catch (InputMismatchException e) {
+                            System.out.println(VERMELHO + "Erro: Digite um número!" + RESET);
+                            sc.nextLine();
+                            continue;
+                        }
                         if (opcao == 1) {
-                            cadastrarAtor(sc,atores);
+                            cadastrarAtor(sc, atores);
                             Ator ator2 = atores.getLast();
                             filme.cadastrarAtores(ator2);
                             System.out.println(VERDE + "\nAtor adicionado!" + RESET);
@@ -253,9 +275,14 @@ public class Main {
 
                     }
                 }
-                System.out.println(AZUL + "\nDeseja associar um novo Ator?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não" + RESET);
-                opcao = sc.nextInt();
-                sc.nextLine();
+                try {
+                    System.out.println(AZUL + "\nDeseja associar outro Ator?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não" + RESET);
+                    opcao = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println(VERMELHO + "Erro: Digite um número!" + RESET);
+                    sc.nextLine();
+                }
             } while (opcao != 2);
 
 

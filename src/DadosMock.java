@@ -2,6 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DadosMock {
+    private static Diretor teste = new Diretor("Joao", "brasileiro", 76);
+    private static List<Ator> listaAtores2;
+
+    static {
+        listaAtores2 = new ArrayList<>();
+        List<Ator> atoresDisponiveis = carregarAtores();
+        listaAtores2.add(atoresDisponiveis.get(0)); // Nicole ferraz
+        listaAtores2.add(atoresDisponiveis.get(1)); // Bruna
+    }
+
+    public static List<Ator> getListaAtores2() {
+        return listaAtores2;
+    }
 
     public static List<Filme> carregarFilmes() {
         List<Filme> listaFilme = new ArrayList<>();
@@ -9,9 +22,9 @@ public class DadosMock {
         listaFilme.add(new Filme("12/09", "Avatar", 240000000.0, "Ficção científica de seres azuis."));
         listaFilme.add(new Filme("04/12", "Vingadores", 220000000.0, "Super-heróis lutando juntos contra o mal."));
         listaFilme.add(new Filme("12/97", "Titanic", 200000000.0, "Um naufrágio histórico."));
-        listaFilme.add(new Filme("06/15", "Divertida Mente", 175000000.0, "As emoções humanas personificadas."));
+        listaFilme.add(new Filme("06/15", "Divertidamente", 175000000.0, "As emoções humanas personificadas.", teste, getListaAtores2()));
         listaFilme.add(new Filme("07/94", "O Rei Leão", 45000000.0, "Um filhote de leão cresce comendo insetos e derrota o seu tio."));
-        listaFilme.add(new Filme("12/19", "Minha mãe é uma peça 3", 8000000.0, "Uma mãe ansiosa lida com a gravidez da filha e o casamento do filho."));
+        listaFilme.add(new Filme("12/19", "Minha mãe é uma peça 3", 8000000.0, "Uma mãe ansiosa lida com a gravidez da filha e o casamento do filho.", teste, getListaAtores2()));
         return listaFilme;
     }
 
