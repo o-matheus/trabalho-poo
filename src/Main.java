@@ -257,7 +257,7 @@ public class Main {
                         System.out.println(VERDE + "Ator adicionado!" + RESET);
                     } else {
                         try {
-                            System.out.println(VERDE + "\nAtor não encontrado!" + RESET);
+                            System.out.println(VERMELHO + "\nAtor não encontrado!" + RESET);
                             System.out.println(AZUL + "\nDeseja cadastrar o Ator?\n" + AMARELO + "1 ➤ Sim\n2 ➤ Não" + RESET);
                             opcao = sc.nextInt();
                             sc.nextLine();
